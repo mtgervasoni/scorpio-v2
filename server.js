@@ -2,6 +2,80 @@ const express = require("express");
 
 const app = express();
 
+//Use Sequelize:
+const Sequelize = require("sequelize");
+
+// const sequelize = new Sequelize("scorpio_db", "root", "positive8", {
+//   host: "localhost",
+//   dialect: "mysql",
+//   operatorsAliases: false,
+
+//   pool: {
+//     max: 5,
+//     min: 0,
+//     acquire: 30000,
+//     idle: 10000
+//   }
+// });
+
+// sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log("Connection has been established successfully.");
+//   })
+//   .catch(err => {
+//     console.error("Unable to connect to the database:", err);
+//   });
+
+// const User1 = sequelize.define("myusers", {
+//   firstName: {
+//     type: Sequelize.STRING
+//   },
+//   lastName: {
+//     type: Sequelize.STRING
+//   }
+// });
+
+// force: true will drop the table if it already exists
+// User1.sync({ force: true }).then(() => {
+//   // Table created
+//   return User1.create({
+//     firstName: "John",
+//     lastName: "Hancock"
+//   });
+// });
+
+// const Test1 = sequelize.define("test1", {
+//   firstName: {
+//     type: Sequelize.STRING
+//   },
+//   lastName: {
+//     type: Sequelize.STRING
+//   }
+// });
+
+// force: true will drop the table if it already exists
+// Test1.sync({ force: true }).then(() => {
+//   // Table created
+//   return Test1.create({
+//     firstName: "John2",
+//     lastName: "Hancock2"
+//   });
+// });
+
+// Test1.findAll();
+
+// User1.findOne().then(ret => {
+//   console.log(ret);
+// });
+
+require("./routes")(app);
+app.get("*", (req, res) =>
+  res.status(200).send({
+    message: "Welcome to the beginning of nothingness."
+  })
+);
+
 //Bring in routes:
 const users = require("./routes/api/users");
 const items = require("./routes/api/items");
@@ -21,7 +95,7 @@ app.listen(port, () => console.log(`Server running on port ${port}`));
 const sql_info = require("./config/keys").mySQL_info;
 
 //Connect to mySQL DB
-var mysql = require("mysql");
+var mysql = require("mysql2");
 var connection = mysql.createConnection(sql_info);
 connection.connect(function(err) {
   if (err) {

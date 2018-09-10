@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "michaelgervasoni",
+    "password": null,
+    "database": "scorpio-postgres",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "define": {
+      "timestamps": true
+    },
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "scorpio-postgres",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "scorpio-postgres",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
